@@ -1,0 +1,19 @@
+{
+  "persons": [
+    {
+      "name": "Arto Hellas",
+      "number": "040-123456",
+      "id": 1
+    },
+    {
+      "name": "Skar Skaric",
+      "number": "034596-409506",
+      "id": 0.24736340356788955
+    },
+    {
+      "name": "Antonio Trupac",
+      "number": "03495-45066",
+      "id": 0.07361942402225508
+    }
+  ]
+}
