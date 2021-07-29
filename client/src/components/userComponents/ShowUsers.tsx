@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction } from 'react';
-import { remove } from '../../services/services';
+import { remove, update } from '../../services/services';
 import { Person } from '../../types';
 
 type ShowUsersProps = {

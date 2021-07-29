@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
-import { create } from '../../services/services';
+import { create, update } from '../../services/services';
 import { Person } from '../../types';
 import { Input } from '../formComponents/Input';
 
@@ -29,21 +29,26 @@ export const Form: FC<FormProps> = (props) => {
       number: phoneNumber,
       id: Math.random(),
     };
-    create(personObject).then((returnedPerson) => {
-      props.setPersons(props.persons.concat(returnedPerson));
-      setNewName('');
-      setPhoneNumber('');
-    });
 
-    if (props.persons.some((person) => person.name === newName)) {
+    if (props.persons.some((person) => person.name === personObject.name)) {
       alert(`${newName} already exists`);
-      props.setPersons([...props.persons]);
+      props.setPersons(props.persons);
+    }
+
+    if (props.persons.every((person) => person.name !== personObject.name)) {
+      create(personObject).then((returnedPerson) => {
+        props.setPersons([...props.persons, returnedPerson]);
+        setNewName('');
+        setPhoneNumber('');
+      });
     }
   };
+
   const onSubmit = (e: any) => {
     e.preventDefault();
     addPerson(e);
   };
+
   return (
     <form>
       <div>

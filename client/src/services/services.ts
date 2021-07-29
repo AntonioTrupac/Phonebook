@@ -19,7 +19,6 @@ const update = async <T>(id: number, newObject: T) => {
 
 const remove = async <T>(id: number, newObject: T) => {
   const request = await axios.delete(`${baseURL}/${id}`, newObject);
-  console.log('req data', request.data);
   return request.data;
 };
 
