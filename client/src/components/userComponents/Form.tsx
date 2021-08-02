@@ -11,6 +11,7 @@ type FormProps = {
 export const Form: FC<FormProps> = (props) => {
   const [newName, setNewName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [added, setAdded] = useState<boolean>(false);
   const onChange = (e: any) => {
     e.preventDefault();
     setNewName(e.target.value);
@@ -27,7 +28,7 @@ export const Form: FC<FormProps> = (props) => {
     const personObject = {
       name: newName,
       number: phoneNumber,
-      id: Math.random(),
+      id: Number(Math.random().toString(36).substr(2, 9)),
     };
 
     if (props.persons.some((person) => person.name === personObject.name)) {
@@ -40,7 +41,12 @@ export const Form: FC<FormProps> = (props) => {
         props.setPersons([...props.persons, returnedPerson]);
         setNewName('');
         setPhoneNumber('');
+        setAdded(true);
       });
+
+      setTimeout(() => {
+        setAdded(false);
+      }, 2000);
     }
   };
 
@@ -51,6 +57,7 @@ export const Form: FC<FormProps> = (props) => {
 
   return (
     <form>
+      {added && <h1>User added</h1>}
       <div>
         name: <Input type='text' value={newName} onChange={onChange} />
       </div>

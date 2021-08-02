@@ -1,0 +1,22 @@
+export const persons = [
+  {
+    name: 'Antonio',
+    number: '2134205-5495456',
+    id: 2,
+  },
+  {
+    name: 'Marakes Marakic',
+    number: '0459456-43450',
+    id: 4,
+  },
+  {
+    name: 'Mario Maric',
+    number: '093495-445056',
+    id: 5,
+  },
+  {
+    name: 'Marino Mariiic',
+    number: '132494-50569',
+    id: 6,
+  },
+];
