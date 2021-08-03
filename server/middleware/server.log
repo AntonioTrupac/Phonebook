@@ -1,0 +1,2 @@
+::1 - - [03/Aug/2021:11:27:20 +0000] "POST /api/persons HTTP/1.1" 400 32 "-" "PostmanRuntime/7.28.1"
+[0mPOST /api/persons [33m400[0m 2.481 ms - 32[0m

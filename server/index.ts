@@ -1,6 +1,7 @@
-import express, { request, Request, Response } from 'express';
+import express, { NextFunction, request, Request, Response } from 'express';
 import { persons } from './data/persons';
 import { Person } from './interface/person';
+import logger from './middleware/ReguestLogger';
 import { generateId } from './utils/generateId';
 
 const app = express();
@@ -8,11 +9,11 @@ app.use(express.json());
 
 const PORT = 4000;
 
-app.use(express.json());
+app.use(logger);
 
 app.get('/ping', (_req, res) => {
   console.log('someone pinged here');
-  res.send('pong');
+  res.send(`Phonebook has info for ${persons.length} people`);
 });
 
 app.get('/api/persons', (request: Request, response: Response) => {
@@ -31,9 +32,9 @@ app.get('/api/persons/:id', (request: Request, response: Response) => {
 
 app.post('/api/persons', (request: Request, response: Response) => {
   const body: Person = request.body;
-  console.log(body);
+  console.log('Request body', body);
 
-  !body && response.status(400).json({ error: 'Content missing' });
+  !body.name && response.status(400).json({ error: 'Content missing' });
 
   const personObject = {
     name: body.name,
@@ -41,9 +42,20 @@ app.post('/api/persons', (request: Request, response: Response) => {
     id: generateId(),
   };
 
-  persons.concat(personObject);
+  if (persons.find((person) => person.name === personObject.name)) {
+    response.status(400).json({ error: 'name must be unique!' });
+    console.log('ERROR! Name must be unique');
+  }
 
-  response.json(personObject);
+  if (persons.every((person) => person.name !== personObject.name)) {
+    if (persons.find((person) => person.number === personObject.number)) {
+      response.status(400).json({ error: 'ERROR! phone already exists!' });
+      console.log('ERROR! Phone already exists!');
+    } else {
+      persons.concat(personObject);
+      response.json(personObject);
+    }
+  }
 });
 
 app.delete('/api/persons/:id', (request: Request, response: Response) => {
