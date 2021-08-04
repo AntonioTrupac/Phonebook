@@ -1,2 +1,5 @@
 ::1 - - [03/Aug/2021:11:27:20 +0000] "POST /api/persons HTTP/1.1" 400 32 "-" "PostmanRuntime/7.28.1"
 [0mPOST /api/persons [33m400[0m 2.481 ms - 32[0m
+::1 - - [03/Aug/2021:11:31:16 +0000] "POST /api/persons HTTP/1.1" 200 58 "-" "PostmanRuntime/7.28.1"
+::ffff:127.0.0.1 - - [04/Aug/2021:12:19:03 +0000] "GET /api/persons HTTP/1.1" 200 225 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0"
+::ffff:127.0.0.1 - - [04/Aug/2021:12:28:53 +0000] "GET /api/persons HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0"

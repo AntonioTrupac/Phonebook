@@ -1,12 +1,13 @@
-import express, { NextFunction, request, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import { persons } from './data/persons';
 import { Person } from './interface/person';
 import logger from './middleware/ReguestLogger';
+import cors from 'cors';
 import { generateId } from './utils/generateId';
 
 const app = express();
 app.use(express.json());
-
+app.use(cors());
 const PORT = 4000;
 
 app.use(logger);
