@@ -4,6 +4,8 @@ import { Person } from './interface/person';
 import logger from './middleware/ReguestLogger';
 import cors from 'cors';
 import { generateId } from './utils/generateId';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 app.use(express.json());
