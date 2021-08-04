@@ -5,11 +5,17 @@ import logger from './middleware/ReguestLogger';
 import cors from 'cors';
 import { generateId } from './utils/generateId';
 import dotenv from 'dotenv';
+import db from './data/mongo';
+import connectDatabase from './data/mongo';
+import PersonModel from './data/schema/schema';
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+connectDatabase();
+
 const PORT = process.env.PORT || 4000;
 
 app.use(logger);
@@ -20,8 +26,10 @@ app.get('/ping', (_req, res) => {
 });
 
 app.get('/api/persons', (request: Request, response: Response) => {
-  console.log(persons);
-  response.json(persons);
+  PersonModel.find({}).then((person: Person) => {
+    console.log('Get all persons', person);
+    response.json(person);
+  });
 });
 
 app.get('/api/persons/:id', (request: Request, response: Response) => {

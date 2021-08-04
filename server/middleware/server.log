@@ -22,3 +22,6 @@
 ::ffff:127.0.0.1 - - [04/Aug/2021:17:41:15 +0000] "DELETE /api/persons/7 HTTP/1.1" 204 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0"
 ::ffff:127.0.0.1 - - [04/Aug/2021:17:41:21 +0000] "POST /api/persons HTTP/1.1" 200 46 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0"
 ::ffff:127.0.0.1 - - [04/Aug/2021:17:42:30 +0000] "DELETE /api/persons/7 HTTP/1.1" 204 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0"
+::1 - - [04/Aug/2021:22:18:15 +0000] "GET /api/persons HTTP/1.1" 200 225 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
+::1 - - [04/Aug/2021:22:18:15 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:4000/api/persons" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
+::1 - - [04/Aug/2021:22:19:25 +0000] "GET /api/persons HTTP/1.1" 200 201 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
