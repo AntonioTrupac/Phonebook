@@ -8,7 +8,7 @@ import { generateId } from './utils/generateId';
 const app = express();
 app.use(express.json());
 app.use(cors());
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 app.use(logger);
 
@@ -55,6 +55,7 @@ app.post('/api/persons', (request: Request, response: Response) => {
     } else {
       persons.concat(personObject);
       response.json(personObject);
+      console.log(persons, personObject);
     }
   }
 });

@@ -28,7 +28,6 @@ export const Form: FC<FormProps> = (props) => {
     const personObject = {
       name: newName,
       number: phoneNumber,
-      id: Number(Math.random().toString(36).substr(2, 9)),
     };
 
     if (props.persons.some((person) => person.name === personObject.name)) {
