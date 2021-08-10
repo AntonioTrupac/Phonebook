@@ -4,6 +4,7 @@ const baseURL = 'http://localhost:4000/api/persons';
 
 const getAll = async () => {
   const request = await axios.get(baseURL);
+  console.log(request.data);
   return request.data;
 };
 
