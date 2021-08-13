@@ -1,5 +1,5 @@
-import mongoose, { Document, Model, Mongoose, Schema } from 'mongoose';
-import { IPerson } from '../../interface/person';
+import mongoose, { Document, Model, Schema } from 'mongoose';
+import { IPerson } from '../../../interface/person';
 //defining the schema and the matching model
 
 export interface IPersonModel extends Document, IPerson {}

@@ -1,5 +1,5 @@
 import { NextFunction, Request, request, Response, Router } from 'express';
-import PersonModel, { IPersonModel } from '../data/schema/personModel';
+import PersonModel, { IPersonModel } from '../data/schema/person/personModel';
 import { IPerson } from '../interface/person';
 
 const router: Router = Router();
@@ -65,10 +65,8 @@ router.post('/', async (request: Request, response: Response) => {
 
 // @route PUT /api/persons/:id
 // @desc update persons phone number
-
 router.put('/:id', async (request: Request, response: Response) => {
   try {
-    // const bodyNumber: IPerson = request.body.number;
     const id = request.params.id;
     console.log('Person id to update', id);
 
@@ -85,7 +83,6 @@ router.put('/:id', async (request: Request, response: Response) => {
         }
       }
     );
-
     return updatePerson;
   } catch (err) {
     console.error(err.message);

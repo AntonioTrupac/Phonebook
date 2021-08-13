@@ -1,17 +1,16 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react';
-import { create, update } from '../../services/services';
-import { Person } from '../../types';
+import { error } from 'console';
+import { FC, useContext, useState } from 'react';
+import { StoreContext } from '../../context/FetchContext';
+
 import { Input } from '../formComponents/Input';
 
-type FormProps = {
-  persons: Person[];
-  setPersons: Dispatch<SetStateAction<Person[]>>;
-};
+type FormProps = {};
 
 export const Form: FC<FormProps> = (props) => {
   const [newName, setNewName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [added, setAdded] = useState<boolean>(false);
+  const contextData = useContext(StoreContext);
   const onChange = (e: any) => {
     e.preventDefault();
     setNewName(e.target.value);
@@ -29,19 +28,41 @@ export const Form: FC<FormProps> = (props) => {
       name: newName,
       number: phoneNumber,
     };
+    //FIXME: not re-rendering and showing the new number even tho its updated
+    //in the back/db
+    contextData?.person.filter((person) => {
+      if (person?.name === personObject.name) {
+        console.log('UPDATED');
 
-    if (props.persons.some((person) => person.name === personObject.name)) {
-      alert(`${newName} already exists`);
-      props.setPersons(props.persons);
-    }
+        contextData?.update &&
+          contextData?.update(person._id, personObject).then(() => {
+            console.log('hello');
+            setNewName('');
+            setPhoneNumber('');
+            contextData?.setPersons([
+              ...contextData?.person,
+              {
+                ...person,
+                number: phoneNumber,
+              },
+            ]);
+            console.log(person);
+            return person;
+          });
+      }
+      return 'person'; // THIS IS STUPID
+    });
 
-    if (props.persons.every((person) => person.name !== personObject.name)) {
-      create(personObject).then((returnedPerson) => {
-        props.setPersons([...props.persons, returnedPerson]);
-        setNewName('');
-        setPhoneNumber('');
-        setAdded(true);
-      });
+    if (
+      contextData?.person.every((person) => person.name !== personObject.name)
+    ) {
+      contextData?.create &&
+        contextData?.create(personObject).then((returnedPerson) => {
+          contextData?.setPersons([...contextData?.person, returnedPerson]);
+          setNewName('');
+          setPhoneNumber('');
+          setAdded(true);
+        });
 
       setTimeout(() => {
         setAdded(false);

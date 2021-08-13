@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import FetchContext from './context/FetchContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <FetchContext>
+      <App />
+    </FetchContext>
   </React.StrictMode>,
   document.getElementById('root')
 );

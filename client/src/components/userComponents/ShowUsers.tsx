@@ -1,20 +1,22 @@
-import { Dispatch, FC, SetStateAction } from 'react';
-import { remove, update } from '../../services/services';
-import { Person } from '../../types';
+import { FC, useContext } from 'react';
+import { StoreContext } from '../../context/FetchContext';
+import { remove } from '../../services/services';
 
 type ShowUsersProps = {
-  persons: Person[];
   searchTerm: string;
-  setPersons: Dispatch<SetStateAction<Person[]>>;
 };
 
 export const ShowUsers: FC<ShowUsersProps> = (props) => {
-  const deletePerson = (id: number) => {
-    const person = props.persons.find((person) => person.id === id);
+  const contextData = useContext(StoreContext);
+
+  const deletePerson = (_id: string) => {
+    const person = contextData?.person.find((person) => person._id === _id);
 
     if (window.confirm('Are u sure u want to delete the user?')) {
-      remove(id, person);
-      props.setPersons(props.persons.filter((person) => person.id !== id));
+      remove(_id, person);
+      contextData?.setPersons(
+        contextData?.person.filter((person) => person._id !== _id)
+      );
     }
   };
 
@@ -22,15 +24,16 @@ export const ShowUsers: FC<ShowUsersProps> = (props) => {
     <>
       <h2>Numbers</h2>
       <ul>
-        {props.persons
-          .filter((person) =>
+        {contextData?.person
+          ?.filter((person) =>
             person?.name.toLowerCase().includes(props.searchTerm.toLowerCase())
           )
           .map((person) => {
+            const id = Math.random() * 10000;
             return (
-              <li key={`ime-${person.id}`}>
+              <li key={`ime-${id}`}>
                 {person?.name} - {person?.number}{' '}
-                <button onClick={() => deletePerson(person.id)}>
+                <button onClick={() => deletePerson(person._id)}>
                   {' '}
                   delete{' '}
                 </button>
