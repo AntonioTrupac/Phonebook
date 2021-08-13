@@ -48,8 +48,10 @@ const FetchContext = <T extends unknown, P>(
   }, []);
 
   const create = async <T,>(newObject: T) => {
+    setLoading(true);
     try {
       const response = await axios.post(baseURL, newObject);
+      setLoading(false);
       return response.data;
     } catch (err) {
       console.error(err);
@@ -58,8 +60,10 @@ const FetchContext = <T extends unknown, P>(
   };
 
   const update = async <T,>(_id: string, newObject: T) => {
+    setLoading(true);
     try {
       const response = await axios.put(`${baseURL}/${_id}`, newObject);
+      setLoading(false);
       return response.data;
     } catch (err) {
       console.error(err);
