@@ -1,4 +1,3 @@
-import { error } from 'console';
 import { FC, useContext, useState } from 'react';
 import { StoreContext } from '../../context/FetchContext';
 
@@ -10,6 +9,7 @@ export const Form: FC<FormProps> = (props) => {
   const [newName, setNewName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [added, setAdded] = useState<boolean>(false);
+  const [update, setUpdate] = useState<boolean>(false);
   const contextData = useContext(StoreContext);
   const onChange = (e: any) => {
     e.preventDefault();
@@ -28,27 +28,21 @@ export const Form: FC<FormProps> = (props) => {
       name: newName,
       number: phoneNumber,
     };
-    //FIXME: not re-rendering and showing the new number even tho its updated
-    //in the back/db
+
     contextData?.person.filter((person) => {
       if (person?.name === personObject.name) {
         console.log('UPDATED');
 
         contextData?.update &&
           contextData?.update(person._id, personObject).then(() => {
-            console.log('hello');
             setNewName('');
             setPhoneNumber('');
-            contextData?.setPersons([
-              ...contextData?.person,
-              {
-                ...person,
-                number: phoneNumber,
-              },
-            ]);
-            console.log(person);
-            return person;
+            setUpdate(true);
+            contextData?.getPersons && contextData?.getPersons();
           });
+        setTimeout(() => {
+          setUpdate(false);
+        }, 2000);
       }
       return 'person'; // THIS IS STUPID
     });
@@ -78,6 +72,7 @@ export const Form: FC<FormProps> = (props) => {
   return (
     <form>
       {added && <h1>User added</h1>}
+      {update && <h1>User updated</h1>}
       <div>
         name: <Input type='text' value={newName} onChange={onChange} />
       </div>

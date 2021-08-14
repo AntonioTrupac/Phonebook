@@ -17,6 +17,7 @@ type Store = {
   error?: string;
   create?: <T extends unknown>(newObject: T) => Promise<any>;
   update?: <T>(_id: string, newObject: T) => Promise<any>;
+  getPersons?: () => Promise<any>;
 };
 
 const StoreContext = createContext<Store | undefined>(undefined);
@@ -83,8 +84,9 @@ const FetchContext = <T extends unknown, P>(
       error,
       create,
       update,
+      getPersons,
     }),
-    [persons, error, loading]
+    [persons, error, loading, getPersons]
   );
 
   return (

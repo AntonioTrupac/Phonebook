@@ -7251,3 +7251,6 @@
 ::1 - - [13/Aug/2021:20:38:32 +0000] "PUT /api/persons/6116beb8970e374b1be0cb1e HTTP/1.1" 200 83 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36"
 ::1 - - [13/Aug/2021:20:38:40 +0000] "DELETE /api/persons/6116beb8970e374b1be0cb1e HTTP/1.1" 204 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36"
 ::1 - - [13/Aug/2021:20:38:42 +0000] "GET /api/persons HTTP/1.1" 200 386 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36"
+::1 - - [14/Aug/2021:11:33:10 +0000] "GET /api/persons HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36"
+::1 - - [14/Aug/2021:11:33:18 +0000] "PUT /api/persons/6116b89e99b296265cd5fb9a HTTP/1.1" 200 91 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36"
+::1 - - [14/Aug/2021:11:33:18 +0000] "GET /api/persons HTTP/1.1" 200 388 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36"
